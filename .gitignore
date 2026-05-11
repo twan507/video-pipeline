@@ -1,0 +1,19 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Node / Remotion
+node_modules/
+remotion/.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Run artifacts (kept on disk, not in git)
+outputs/*/render.mp4
+remotion/public/runs/*/audio/

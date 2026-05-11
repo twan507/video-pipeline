@@ -1,0 +1,21 @@
+[project]
+name = "vbse-video"
+version = "0.0.1"
+description = "VBSE Video Pipeline v2 - notebook-centric orchestration. See vbse_video_pipeline.md."
+requires-python = ">=3.11"
+dependencies = [
+    # TODO Phase 1: pin versions when integrating
+    "pydantic>=2",
+    "requests",
+    "python-dotenv",
+    "pyperclip",
+    "pydub",
+    "mutagen",
+    "pydantic2ts",
+    "jupyterlab",
+    "ipython",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lib*"]

@@ -1,0 +1,22 @@
+{
+  "name": "vbse-video-remotion",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Single Remotion project, multiple compositions. See ../vbse_video_pipeline.md section 9.",
+  "scripts": {
+    "start": "remotion studio src/Root.tsx",
+    "build": "remotion bundle src/Root.tsx",
+    "render": "remotion render src/Root.tsx"
+  },
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/fonts": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/react": "^18.3.3"
+  }
+}

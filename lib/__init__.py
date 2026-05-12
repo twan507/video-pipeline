@@ -1,1 +1,1 @@
-# lib/ - Python modules imported into notebooks. See vbse_video_pipeline.md section 2.
+# lib/ - Python modules imported into notebooks. See docs/video_pipeline.md section 2.

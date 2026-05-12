@@ -1,6 +1,6 @@
 # News Analysis — Style Guide
 
-Đính kèm vào Claude.ai Project `Video — News Analysis`. Xem vbse_video_pipeline.md section 5.
+Đính kèm vào Claude.ai Project `Video — News Analysis`. Xem docs/video_pipeline.md section 5.
 
 ## Tone
 TODO Phase 3.

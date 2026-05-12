@@ -7,6 +7,14 @@ __pycache__/
 .venv/
 *.egg-info/
 
+# Portable Python (downloaded by scripts/pyinstaller.bat)
+python/
+get-pip.py
+python-*-embed-amd64.zip
+
+# POC artifacts
+scripts/poc_output.mp3
+
 # Node / Remotion
 node_modules/
 remotion/.cache/

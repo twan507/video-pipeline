@@ -1,2 +1,2 @@
-// TODO Phase 1: implement per vbse_video_pipeline.md
+// TODO Phase 1: implement per docs/video_pipeline.md
 export {};

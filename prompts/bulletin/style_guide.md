@@ -1,6 +1,6 @@
 # Bulletin — Style Guide
 
-Đính kèm file này vào Claude.ai Project `Video — Bulletin`. Xem vbse_video_pipeline.md section 5.
+Đính kèm file này vào Claude.ai Project `Video — Bulletin`. Xem docs/video_pipeline.md section 5.
 
 ## Tone
 TODO Phase 1: bản tin, neutral, rõ ràng, dứt khoát.

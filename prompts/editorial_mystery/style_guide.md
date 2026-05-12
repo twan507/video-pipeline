@@ -1,6 +1,6 @@
 # Editorial Mystery — Style Guide
 
-Đính kèm vào Claude.ai Project `Video — Editorial Mystery`. Xem vbse_video_pipeline.md section 5.
+Đính kèm vào Claude.ai Project `Video — Editorial Mystery`. Xem docs/video_pipeline.md section 5.
 
 ## Tone
 TODO Phase 2: gợi tò mò, tạp chí, hook mạnh ở 5 giây đầu.

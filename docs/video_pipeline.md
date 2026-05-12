@@ -907,3 +907,34 @@ Những thứ thay đổi sau sẽ rework đau, lock ngay:
 6. **Theme tokens base**: spacing scale, font weights, safe zones. Lock trong `shared/theme/tokens.ts`.
 
 Còn lại (scene types, prompt phrasing, animation timing) đều flexible, sửa được.
+
+---
+
+## 20. Implementation status snapshot (2026-05-12)
+
+> Spec ở trên là thiết kế gốc. Thực tế triển khai có một số thay đổi — chi tiết tại `memory.md` ở project root.
+
+### Đã làm
+- **Toolchain**: portable Python 3.12.10 + uv (`pyinstaller.bat`, `libinstaller.bat` ở root). Node 24. ffmpeg portable qua `imageio-ffmpeg`.
+- **lib/**: `schema.py`, `validator.py`, `vbee.py`, `cache.py`, `audio.py`, `render.py` — 33 unit tests + 1 live test pass.
+- **Notebook**: `_template_bulletin.ipynb` 8 cells, sample data inline.
+- **Remotion bulletin template**: Composition + 4 scenes (Headline, QuickRank, KPI, Outro) + shared theme/primitives + Root.tsx.
+- **E2E render**: video bulletin 24.6s 1080x1920 + narration Vbee + BGM với fade-in/out.
+
+### Decisions thay đổi so với section 19
+| Item | Spec gốc | Thực tế | Lý do |
+|---|---|---|---|
+| Font | Fraunces (serif) + Inter (sans) | **Roboto** cho cả 2 role | Fraunces+Inter fallback hệ thống vỡ diacritic Vietnamese ("đầu" → "đâ`u") |
+| Voice | `anh_khoi` (alias) | `hn_male_phuthang_stor80dt_48k-fhg` (storytelling) | News variant quá flat; storytelling cùng diễn viên Anh Khôi nhưng có ngữ điệu |
+| Speed bulletin | 1.05 | **0.95** | User feedback đọc quá nhanh |
+| Data input format | Excel/CSV (`lib/data_card.py`) | **JSON** | User chọn JSON khi resume |
+| Vbee API | "POC sync hay async" | **Async only** | Postman doc confirm |
+
+### Defer / chưa làm
+- `lib/data_card.py` — chờ user JSON sample data thật
+- `scripts/sync_schema.py` — chờ install `json2ts` CLI từ npm
+- Template `editorial_mystery` — Phase 2
+- Template `news_analysis` — Phase 3+
+- Karaoke subtitle, audio ducking, multi-aspect, programmatic LLM — roadmap
+
+Resume detailed steps tại `memory.md` section "Resume from here".

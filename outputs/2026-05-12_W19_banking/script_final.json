@@ -1,0 +1,82 @@
+{
+  "video_id": "2026-05-12_W19_banking",
+  "template": "bulletin",
+  "meta": {
+    "title": "Bản tin Banking W19/2026",
+    "voice": "hn_male_phuthang_news65dt_44k-fhg",
+    "speed": 1.05,
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "created_at": "2026-05-12T20:00:00+07:00"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration_text": "Tuần mười chín, cổ phiếu ngân hàng dẫn đầu thị trường với mức tăng bình quân năm phẩy bảy phần trăm. Techcombank, Vietcombank và MB tiếp tục là động lực chính.",
+      "audio_path": null,
+      "duration": null,
+      "type": "headline",
+      "data": {
+        "headline": "Banking dẫn đầu W19",
+        "category": "Thị trường",
+        "issue_label": "Tuần 19/2026"
+      }
+    },
+    {
+      "id": "s02",
+      "narration_text": "Top ba ngân hàng tăng mạnh. Techcombank dẫn đầu với mức tăng tám phẩy năm phần trăm, đóng cửa năm mươi hai nghìn ba trăm đồng. Vietcombank đứng thứ hai với sáu phẩy hai phần trăm.",
+      "audio_path": null,
+      "duration": null,
+      "type": "quick_rank",
+      "data": {
+        "title": "Top tăng giá ngành ngân hàng",
+        "items": [
+          {
+            "rank": 1,
+            "label": "TCB",
+            "value": 52300.0,
+            "change_pct": 8.5
+          },
+          {
+            "rank": 2,
+            "label": "VCB",
+            "value": 105400.0,
+            "change_pct": 6.2
+          },
+          {
+            "rank": 3,
+            "label": "MBB",
+            "value": 28900.0,
+            "change_pct": 5.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "s03",
+      "narration_text": "Tỷ suất sinh lời trên vốn chủ sở hữu của ngành ngân hàng đạt mười tám phẩy hai phần trăm, tăng một phẩy bảy điểm phần trăm so với quý trước.",
+      "audio_path": null,
+      "duration": null,
+      "type": "kpi",
+      "data": {
+        "metric": "ROE bình quân ngành",
+        "current_value": 18.2,
+        "previous_value": 16.5,
+        "unit": "%",
+        "delta": 1.7
+      }
+    },
+    {
+      "id": "s04",
+      "narration_text": "Theo dõi VBSE để cập nhật phân tích tuần tới. Cảm ơn các bạn đã lắng nghe.",
+      "audio_path": null,
+      "duration": null,
+      "type": "outro",
+      "data": {
+        "cta": "Theo dõi VBSE",
+        "handle": "@vbse"
+      }
+    }
+  ]
+}

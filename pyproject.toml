@@ -1,7 +1,7 @@
 [project]
 name = "vbse-video"
 version = "0.0.1"
-description = "VBSE Video Pipeline v2 - notebook-centric orchestration. See vbse_video_pipeline.md."
+description = "VBSE Video Pipeline v2 - notebook-centric orchestration. See docs/video_pipeline.md."
 requires-python = ">=3.11"
 dependencies = [
     # TODO Phase 1: pin versions when integrating
@@ -11,10 +11,20 @@ dependencies = [
     "pyperclip",
     "pydub",
     "mutagen",
-    "pydantic2ts",
+    "imageio-ffmpeg",
+    "pydantic-to-typescript",
     "jupyterlab",
     "ipython",
+    "pytest",
+    "requests-mock",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: hits real Vbee API (costs credits, skip by default)",
+]
+addopts = "-m 'not live'"
 
 [tool.setuptools.packages.find]
 where = ["."]

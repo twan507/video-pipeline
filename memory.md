@@ -6,11 +6,28 @@ Tracker cho tiến độ, decisions, blockers. Spec gốc: [docs/video_pipeline.
 
 ---
 
-## Current status (2026-05-12)
+## Current status (2026-05-13)
 
-**Pipeline E2E hoạt động đầy đủ cho template `bulletin`** — từ data card → script → audio Vbee → render MP4 1080x1920 + BGM. 33 unit tests + 1 live test pass.
+**Pipeline E2E hoạt động đầy đủ cho template `bulletin`** — VBSE Daily EOD format, 5 scenes, 58.5s, master 1080x1080 (vuông, crop được cả 9:16 + 16:9 + 1:1 + 4:5 mà không mất nội dung). 34 unit tests + 1 live test pass.
 
-Output mới nhất: `outputs/2026-05-12_W19_banking/render.mp4` (~1.5MB, 24.6s, narration AAC + BGM mix).
+**Output thực tế:** `outputs/2026-05-12_daily_eod/render.mp4` (2.9MB, 58.5s, 5 scenes intro+metric+2 ranking+outro).
+
+**Voice hiện tại (sau 5 lần iterate):** `s_hochiminh_female_vyquangcao_advertise_vc` (Vy quảng cáo, SG female, advertise style). User feedback: "vui hào hứng" sau khi đổi từ news → storytelling → advertise voice cloning. Speed 1.0.
+
+**Scene types** (renamed 2026-05-12 chiều, locked decision):
+- `intro` (cũ `headline`): cover scene + nhiều highlights (bullet/stat) sync narration qua `appear_at_sec`
+- `metric` (cũ `kpi`): single metric với count-up animation + context_note
+- `ranking` (cũ `quick_rank`): list 3-5 items + optional summary_text
+- `outro`: CTA + handle + next_topic + date_label
+
+**Data field changes:**
+- `IntroData.highlights[]` (bullets/stats sync narration)
+- `MetricData.context_note` (caption dưới delta)
+- `RankingData.summary_text` (sub-title)
+- `OutroData.date_label` (date stamp đầu outro)
+- `RankItem.value` → Optional + `value_suffix` (vd "tỷ", "điểm")
+
+**Principle locked:** "Mọi info trong narration phải có visual tương ứng" — không slide nào chỉ có tiêu đề rồi giọng đọc 1 đống.
 
 ### Phase status
 - **Scaffold**: DONE
@@ -44,13 +61,22 @@ Xem [Resume from here](#resume-from-here) ở cuối file.
 ## Locked decisions
 
 1. **Font:** **Roboto** (cả serif role + sans role), load qua `@remotion/google-fonts/Roboto` với `subsets: ['vietnamese', 'latin']`, weights 400/500/700. Lý do: hệ thống Georgia/Inter fallback vỡ diacritic tiếng Việt ("đầu" → "đâ`u"). Spec section 19 đề xuất Fraunces+Inter, đã thay vì Vietnamese support.
-2. **Voice config:** `hn_male_phuthang_stor80dt_48k-fhg` (HN - Anh Khôi, **storytelling** variant — đã đổi từ news65dt vì user feedback giọng news quá flat). 1 giọng cho mọi template, đổi speed:
-   - bulletin: **0.95** (đã giảm từ 1.05 cho dễ nghe)
+2. **Voice config:** `s_hochiminh_female_vyquangcao_advertise_vc` ("Vy quảng cáo", giọng nữ Sài Gòn, **kiểu advertise** — energetic). User confirm "vui hào hứng" 2026-05-12. Lịch sử iteration (4 voice tried):
+   - `hn_male_phuthang_news65dt_44k-fhg` (Anh Khôi news, flat — too professional/serious)
+   - `hn_male_phuthang_stor80dt_48k-fhg` (Anh Khôi storytelling, đỡ flat)
+   - `n_hanoi_female_trangcunday_news_vc` (Trang đọc tin, vẫn "buồn" theo user)
+   - `s_hochiminh_female_vyquangcao_advertise_vc` (Vy quảng cáo, advertise — CHOSEN)
+   - **Pattern locked:** news/storytelling voices = flat by design. **Advertise voices** (`_advertise_vc` suffix) clone từ giọng quảng cáo TV/radio → vibe vui/hào hứng tự nhiên. Cho bulletin/TikTok-style, advertise hợp hơn news.
+
+   Speed per template:
+   - bulletin: **1.0** (default; trước đó từng thử 1.05 quá nhanh, 0.95 cho voice news)
    - editorial_mystery: 0.92 (chưa test)
    - news_analysis: 1.0 (chưa test)
+   - **Note:** community voice (`_vc` suffix) là voice cloning, ownership `COMMUNITY` không phải `VBEE`. Query API list voices phải dùng `voice_ownership=COMMUNITY` (required param, sẽ 400 nếu thiếu). Pagination qua `cursor`.
+   - **Vbee TTS không hỗ trợ SSML / `has_emphasis`** cho mọi voices vi-VN hiện tại (đã query 950+ voices). Control ngữ điệu duy nhất qua: punctuation (`,`/`.`/`!`/`?`/`—`), câu ngắn xen dài, "nhé!" đuôi cho rising tone.
 3. **Scene ID format:** `s01`, `s02`, ... (2-digit zero-padded).
 4. **video_id format:** `YYYY-MM-DD_<topic>_<template>`.
-5. **Aspect ratio:** 9:16 (1080x1920) cho mọi template Phase 1-3.
+5. **Aspect ratio:** **1080x1080 master vuông** (đã đổi từ 9:16 vertical 2026-05-12). Critical safe content area = 600x600 ở giữa — visible khi crop về 9:16 hoặc 16:9 hoặc 4:5 hoặc 1:1. Vùng ngoài 600x600 chỉ thấy ở format 1:1, dùng làm background/decorative. Tất cả scene wrap content trong `SafeFrame` primitive (`remotion/src/shared/primitives/SafeFrame.tsx`). Typography scale ~55% so với bản 1080x1920.
 6. **Theme tokens base:** `remotion/src/shared/theme/tokens.ts`.
 7. **Python toolchain:** Portable Python 3.12.10 embed (`python/` folder) + uv. Bootstrap: `pyinstaller.bat` ở root, deps: `libinstaller.bat`. Pattern copy từ `d:/twan_projects/notebook-runner/` nhưng **đã bỏ** launcher/env-encrypt/zip/GUI vì solo dev. .bat files ở **project root**, không trong `scripts/`.
 8. **Data input format = JSON** (không Excel/CSV).
@@ -127,11 +153,12 @@ npm start
 Khi mở session mới, thứ tự đề xuất:
 
 ### Hướng A — Polish bulletin (visual/audio tinh chỉnh)
-Nếu muốn lặp video bulletin chất lượng cao trước khi mở rộng:
-- Tinh chỉnh `narration_text` polish (thêm dấu chấm/gạch ngang để Vbee có nhịp ngắt tự nhiên hơn)
-- Visual: thêm chart cho `QuickRankScene` (bar chart), gradient cho `BackgroundLayer`, brand footer
-- Audio: sidechain compression (BGM tự ducking khi narration nói)
+Bulletin v7 đã render 58.5s với data thật VBSE 12/05. Nếu muốn polish thêm:
+- Visual: thêm chart cho `RankingScene` (bar chart hoặc heatmap), gradient cho `BackgroundLayer`, VBSE brand footer (logo + slogan ở góc)
+- Audio: sidechain compression (BGM tự ducking khi narration nói) — phức tạp, cần xử lý sample-level
 - Subtitle in-code (Phase 4 trong spec section 18 — WhisperX + KaraokeSubtitle)
+- Animation phong phú hơn: scale, blur, transform 3D với spring (spec section 9 nói không dùng spring, nhưng có thể nới)
+- Style theme: hiện chỉ có `bulletin` (white/red). Thêm variant `bulletin_dark` cho hệ sinh thái
 
 ### Hướng B — Mở rộng template (`editorial_mystery`)
 Spec section 2 + 6 + 9 đã liệt kê 7 scene types: PaperScreenshot, ConceptBadge, MagazineSpread, FormulaCard, PullQuote, EditorPick, DatasheetCompare. Workflow:
@@ -173,6 +200,18 @@ Target tháng: $1-12 Vbee.
 ---
 
 ## Activity log
+
+### 2026-05-13 (session 3)
+- **Aspect ratio 9:16 → 1:1 vuông** (1080x1080 master). Critical safe area 600x600 ở giữa → crop được 9:16 + 16:9 + 1:1 + 4:5 mà không mất nội dung. Mới: `SafeFrame` primitive wrap tất cả scene. Typography rescale ~55%.
+- **Item sync với narration**: `RankItem.appear_at_sec` + `IntroHighlight.appear_at_sec` để bullet/item hiện đúng lúc giọng đọc tới. QuickRankScene fallback spread 3s/item nếu không có timing.
+- **Scene rename batch** (lan toả qua 8 files): `headline` → `intro`, `quick_rank` → `ranking`, `kpi` → `metric`. File renames: `HeadlineScene.tsx` → `IntroScene.tsx`, `QuickRankScene.tsx` → `RankingScene.tsx`, `KPIScene.tsx` → `MetricScene.tsx`. Class names + TS schema + tests + dispatcher đều mirror.
+- **Voice iteration 4 lần** xem mục Locked decisions #2. Settle ở `s_hochiminh_female_vyquangcao_advertise_vc`.
+- **Schema thêm 5 optional field** cho rich data: `IntroData.highlights`, `MetricData.context_note`, `RankingData.summary_text`, `OutroData.date_label`, `RankItem.value_suffix`. `RankItem.value` thành Optional.
+- **Validator bump** `MAX_NARRATION_CHARS_PER_SCENE` 300 → 500 (intro scene rich content thường >300 chars).
+- **BGM volume** 0.12 → 0.18 sau user feedback "BGM nhỏ".
+- **Real VBSE Daily EOD bulletin** rendered: `outputs/2026-05-12_daily_eod/render.mp4` 2.9MB 58.5s. Data từ PDF VBSE 12/05/2026: VN Index 1.901,10 +0,30%, KN bán ròng -835,7t, top sectors Bảo hiểm/Nhựa/Dầu khí, top KN bán FPT/VHM/MSB.
+- **34 unit tests pass** (thêm `test_ranking_item_value_optional`).
+- **lib/render.py fix Windows subprocess**: `shutil.which('npx.cmd')` thay literal `'npx'` để Python subprocess tìm được npx trên Windows.
 
 ### 2026-05-12 (session 2)
 - **Toolchain pivot**: portable Python 3.12.10 embed + uv (pattern từ `d:/twan_projects/notebook-runner/`). Tạo `pyinstaller.bat` + `libinstaller.bat` ở root. Bỏ launcher/env-encrypt/zip/GUI vì solo dev.

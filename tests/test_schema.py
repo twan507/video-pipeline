@@ -11,13 +11,13 @@ VALID_SCRIPT = {
     "scenes": [
         {
             "id": "s01",
-            "type": "headline",
+            "type": "intro",
             "narration_text": "Hello",
             "data": {"headline": "Big news", "category": "Markets"},
         },
         {
             "id": "s02",
-            "type": "quick_rank",
+            "type": "ranking",
             "narration_text": "Top movers",
             "data": {
                 "title": "Top tăng giá",
@@ -29,7 +29,7 @@ VALID_SCRIPT = {
         },
         {
             "id": "s03",
-            "type": "kpi",
+            "type": "metric",
             "narration_text": "Profit margin",
             "data": {"metric": "Tỷ suất lợi nhuận", "current_value": 18.0, "previous_value": 22.4, "unit": "%"},
         },
@@ -47,7 +47,7 @@ def test_parses_valid_bulletin_script():
     script = Script.model_validate(VALID_SCRIPT)
     assert script.video_id == "2026-05-12_test"
     assert len(script.scenes) == 4
-    assert script.scenes[0].type == "headline"
+    assert script.scenes[0].type == "intro"
     assert script.scenes[1].data.items[0].label == "VNM"
 
 
@@ -56,7 +56,7 @@ def test_meta_defaults_to_locked_voice_and_format():
     assert m.voice == DEFAULT_VOICE
     assert m.fps == 30
     assert m.width == 1080
-    assert m.height == 1920
+    assert m.height == 1080
     assert m.speed == 1.0
 
 
@@ -67,7 +67,7 @@ def test_rejects_unknown_scene_type():
 
 
 def test_rejects_missing_required_field():
-    bad = {**VALID_SCRIPT, "scenes": [{"id": "s01", "type": "headline", "narration_text": "x",
+    bad = {**VALID_SCRIPT, "scenes": [{"id": "s01", "type": "intro", "narration_text": "x",
                                         "data": {"category": "Markets"}}]}  # missing headline
     with pytest.raises(ValidationError):
         Script.model_validate(bad)
@@ -85,3 +85,17 @@ def test_roundtrip_json():
     again = Script.model_validate_json(raw)
     assert again.video_id == script.video_id
     assert again.scenes[2].data.current_value == 18.0
+
+
+def test_ranking_item_value_optional():
+    """Sector rank không cần value, chỉ change_pct"""
+    s = {**VALID_SCRIPT, "scenes": [
+        {"id": "s01", "type": "ranking", "narration_text": "x" * 10, "data": {
+            "title": "Top sectors",
+            "items": [
+                {"rank": 1, "label": "Bảo hiểm", "change_pct": 2.63},
+            ],
+        }},
+    ]}
+    script = Script.model_validate(s)
+    assert script.scenes[0].data.items[0].value is None

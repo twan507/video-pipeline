@@ -13,9 +13,9 @@ BASE_SCRIPT = {
     "template": "bulletin",
     "meta": {"title": "T", "created_at": "2026-05-12T00:00:00+07:00"},
     "scenes": [
-        {"id": "s01", "type": "headline", "narration_text": "Bản tin tuần",
+        {"id": "s01", "type": "intro", "narration_text": "Bản tin tuần",
          "data": {"headline": "H", "category": "C"}},
-        {"id": "s02", "type": "kpi", "narration_text": "Lợi nhuận giảm",
+        {"id": "s02", "type": "metric", "narration_text": "Lợi nhuận giảm",
          "data": {"metric": "M", "current_value": 1.0, "previous_value": 2.0}},
         {"id": "s03", "type": "outro", "narration_text": "Cảm ơn các bạn",
          "data": {"cta": "Theo dõi"}},
@@ -56,7 +56,7 @@ def test_content_sanity_flags_short_narration():
 
 
 def test_content_sanity_flags_long_narration():
-    long_text = "x" * 500
+    long_text = "x" * 700
     bad = {**BASE_SCRIPT, "scenes": [
         {**BASE_SCRIPT["scenes"][0], "narration_text": long_text},
         *BASE_SCRIPT["scenes"][1:],
@@ -68,7 +68,7 @@ def test_content_sanity_flags_long_narration():
 
 def test_content_sanity_flags_3_same_type_in_a_row():
     bad = {**BASE_SCRIPT, "scenes": [
-        {"id": f"s0{i}", "type": "kpi", "narration_text": "Lợi nhuận giảm",
+        {"id": f"s0{i}", "type": "metric", "narration_text": "Lợi nhuận giảm",
          "data": {"metric": "M", "current_value": 1.0, "previous_value": 2.0}}
         for i in range(1, 4)
     ]}

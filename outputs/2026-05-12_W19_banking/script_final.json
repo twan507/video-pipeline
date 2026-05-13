@@ -3,17 +3,17 @@
   "template": "bulletin",
   "meta": {
     "title": "Bản tin Banking W19/2026",
-    "voice": "hn_male_phuthang_news65dt_44k-fhg",
-    "speed": 1.05,
+    "voice": "s_hochiminh_female_vyquangcao_advertise_vc",
+    "speed": 1.0,
     "fps": 30,
     "width": 1080,
-    "height": 1920,
+    "height": 1080,
     "created_at": "2026-05-12T20:00:00+07:00"
   },
   "scenes": [
     {
       "id": "s01",
-      "narration_text": "Tuần mười chín, cổ phiếu ngân hàng dẫn đầu thị trường với mức tăng bình quân năm phẩy bảy phần trăm. Techcombank, Vietcombank và MB tiếp tục là động lực chính.",
+      "narration_text": "Chào mừng các bạn đến với bản tin tài chính! Tuần qua, thị trường chứng kiến một sự dẫn dắt rất rõ nét — đến từ nhóm cổ phiếu ngân hàng. Mức tăng bình quân toàn ngành — đạt tới năm phẩy bảy phần trăm! Vượt xa các nhóm còn lại.",
       "audio_path": null,
       "duration": null,
       "type": "headline",
@@ -25,7 +25,7 @@
     },
     {
       "id": "s02",
-      "narration_text": "Top ba ngân hàng tăng mạnh. Techcombank dẫn đầu với mức tăng tám phẩy năm phần trăm, đóng cửa năm mươi hai nghìn ba trăm đồng. Vietcombank đứng thứ hai với sáu phẩy hai phần trăm.",
+      "narration_text": "Đứng đầu top tăng giá — là Techcombank! Với mức tăng tám phẩy năm phần trăm. Giá đóng cửa năm mươi hai nghìn ba trăm đồng. Vị trí thứ hai — Vietcombank, tăng sáu phẩy hai phần trăm. Và xếp thứ ba — MB Bank, tăng năm phẩy bảy phần trăm.",
       "audio_path": null,
       "duration": null,
       "type": "quick_rank",
@@ -55,7 +55,7 @@
     },
     {
       "id": "s03",
-      "narration_text": "Tỷ suất sinh lời trên vốn chủ sở hữu của ngành ngân hàng đạt mười tám phẩy hai phần trăm, tăng một phẩy bảy điểm phần trăm so với quý trước.",
+      "narration_text": "Một chỉ tiêu đáng chú ý! Tỷ suất sinh lời trên vốn chủ sở hữu của ngành — đạt mười tám phẩy hai phần trăm. Tăng một phẩy bảy điểm phần trăm so với quý trước. Đây là mức cao nhất trong vòng ba năm — phản ánh hiệu quả kinh doanh đang được cải thiện đáng kể!",
       "audio_path": null,
       "duration": null,
       "type": "kpi",
@@ -69,7 +69,7 @@
     },
     {
       "id": "s04",
-      "narration_text": "Theo dõi VBSE để cập nhật phân tích tuần tới. Cảm ơn các bạn đã lắng nghe.",
+      "narration_text": "Đó là tóm tắt biến động banking tuần qua. Hẹn gặp lại các bạn trong số tiếp theo — với chủ đề bất động sản. Đừng quên theo dõi VBSE để cập nhật sớm nhất nhé!",
       "audio_path": null,
       "duration": null,
       "type": "outro",

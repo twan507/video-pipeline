@@ -1,0 +1,11 @@
+{
+  "video_id": "2026-05-12_daily_eod",
+  "template": "bulletin",
+  "topic": "Tổng kết phiên giao dịch VBSE Daily EOD",
+  "session_date": "2026-05-12",
+  "voice": "s_hochiminh_female_vyquangcao_advertise_vc",
+  "speed": 1.0,
+  "scenes_count": 5,
+  "total_duration_sec": 58.512,
+  "created_at": "2026-05-12T15:33:47.417863+07:00"
+}

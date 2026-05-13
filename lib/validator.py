@@ -15,7 +15,7 @@ from typing import Optional
 
 from lib.schema import Script
 
-MAX_NARRATION_CHARS_PER_SCENE = 300
+MAX_NARRATION_CHARS_PER_SCENE = 500
 MIN_NARRATION_CHARS_PER_SCENE = 5
 
 

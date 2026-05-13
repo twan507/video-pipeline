@@ -11,35 +11,48 @@ export type Meta = {
   created_at: string;
 };
 
-export type HeadlineData = {
+export type IntroHighlight = {
+  text: string;
+  appear_at_sec: number;
+  style?: 'stat' | 'bullet';
+};
+
+export type IntroData = {
   headline: string;
   category: string;
   issue_label?: string | null;
+  highlights?: IntroHighlight[] | null;
 };
 
 export type RankItem = {
   rank: number;
   label: string;
-  value: number;
+  value?: number | null;
+  value_suffix?: string | null;
   change_pct?: number | null;
+  appear_at_sec?: number | null;
 };
 
-export type QuickRankData = {
+export type RankingData = {
   title: string;
+  summary_text?: string | null;
   items: RankItem[];
 };
 
-export type KPIData = {
+export type MetricData = {
   metric: string;
   current_value: number;
   previous_value: number;
   unit: string;
   delta?: number | null;
+  context_note?: string | null;
 };
 
 export type OutroData = {
   cta: string;
   handle?: string | null;
+  next_topic?: string | null;
+  date_label?: string | null;
 };
 
 type SceneBase = {
@@ -49,12 +62,12 @@ type SceneBase = {
   duration: number;
 };
 
-export type HeadlineScene = SceneBase & { type: 'headline'; data: HeadlineData };
-export type QuickRankScene = SceneBase & { type: 'quick_rank'; data: QuickRankData };
-export type KPIScene = SceneBase & { type: 'kpi'; data: KPIData };
+export type IntroScene = SceneBase & { type: 'intro'; data: IntroData };
+export type RankingScene = SceneBase & { type: 'ranking'; data: RankingData };
+export type MetricScene = SceneBase & { type: 'metric'; data: MetricData };
 export type OutroScene = SceneBase & { type: 'outro'; data: OutroData };
 
-export type Scene = HeadlineScene | QuickRankScene | KPIScene | OutroScene;
+export type Scene = IntroScene | RankingScene | MetricScene | OutroScene;
 
 export type Script = {
   video_id: string;

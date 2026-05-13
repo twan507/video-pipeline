@@ -1,0 +1,151 @@
+{
+  "video_id": "2026-05-12_daily_eod",
+  "template": "bulletin",
+  "meta": {
+    "title": "VBSE Daily EOD - 12/05/2026",
+    "voice": "s_hochiminh_female_vyquangcao_advertise_vc",
+    "speed": 1.0,
+    "fps": 30,
+    "width": 1080,
+    "height": 1080,
+    "created_at": "2026-05-12T16:00:00+07:00"
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "narration_text": "Chào mừng các bạn đến với bản tin chứng khoán VBSE! Phiên giao dịch ngày mười hai tháng năm — kết thúc với sắc xanh. VN Index chốt phiên tại một nghìn chín trăm linh một điểm! Tăng năm phẩy sáu điểm, tương đương không phẩy ba phần trăm. Thanh khoản đạt mười tám nghìn bảy trăm năm mươi chín tỷ đồng. Với hơn sáu trăm ba mươi triệu cổ phiếu sang tay!",
+      "audio_path": null,
+      "duration": null,
+      "type": "intro",
+      "data": {
+        "headline": "VN Index 1.901,10",
+        "category": "Tổng kết phiên",
+        "issue_label": "Phiên giao dịch 12/05/2026",
+        "highlights": [
+          {
+            "text": "VN Index 1.901,10 điểm",
+            "appear_at_sec": 4.5,
+            "style": "bullet"
+          },
+          {
+            "text": "+0,30%",
+            "appear_at_sec": 9.0,
+            "style": "stat"
+          },
+          {
+            "text": "Thanh khoản 18.759 tỷ đồng",
+            "appear_at_sec": 13.5,
+            "style": "bullet"
+          },
+          {
+            "text": "KLGD 630 triệu CP",
+            "appear_at_sec": 17.5,
+            "style": "bullet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s02",
+      "narration_text": "Tín hiệu kỹ thuật đáng chú ý! VN Index hiện đang giao dịch — trên đường trung bình hai mươi phiên. Cao hơn MA hai mươi tới năm mươi ba phẩy chín điểm. Khẳng định xu hướng tăng vẫn đang được duy trì vững vàng!",
+      "audio_path": null,
+      "duration": null,
+      "type": "metric",
+      "data": {
+        "metric": "VN Index vs MA20",
+        "current_value": 1901.1,
+        "previous_value": 1847.24,
+        "unit": " điểm",
+        "delta": 53.86,
+        "context_note": "MA20: 1.847,24 — xu hướng tăng được duy trì"
+      }
+    },
+    {
+      "id": "s03",
+      "narration_text": "Top ba nhóm ngành tăng mạnh nhất phiên hôm nay! Dẫn đầu — Kinh doanh Bảo hiểm, tăng hai phẩy sáu mươi ba phần trăm. Vị trí thứ hai — Nhựa và Bao bì, một phẩy hai mươi phần trăm. Và thứ ba — Dịch vụ Dầu khí, một phẩy mười ba phần trăm!",
+      "audio_path": null,
+      "duration": null,
+      "type": "ranking",
+      "data": {
+        "title": "Top ngành tăng giá",
+        "summary_text": "Phiên 12/05 — sắc xanh lan toả",
+        "items": [
+          {
+            "rank": 1,
+            "label": "Kinh doanh Bảo hiểm",
+            "value": null,
+            "value_suffix": null,
+            "change_pct": 2.63,
+            "appear_at_sec": 2.5
+          },
+          {
+            "rank": 2,
+            "label": "Nhựa và Bao bì",
+            "value": null,
+            "value_suffix": null,
+            "change_pct": 1.2,
+            "appear_at_sec": 7.5
+          },
+          {
+            "rank": 3,
+            "label": "Dịch vụ Dầu khí",
+            "value": null,
+            "value_suffix": null,
+            "change_pct": 1.13,
+            "appear_at_sec": 11.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "s04",
+      "narration_text": "Chiều ngược lại — áp lực bán ròng từ khối ngoại! Tổng giá trị bán ròng đạt tám trăm ba mươi sáu tỷ đồng. Đứng đầu danh sách là FPT — bán ròng một trăm bảy mươi hai tỷ. Tiếp theo Vinhomes, bị bán một trăm năm mươi tư tỷ. Và MSB — một trăm bốn mươi tư tỷ đồng.",
+      "audio_path": null,
+      "duration": null,
+      "type": "ranking",
+      "data": {
+        "title": "Khối ngoại bán ròng",
+        "summary_text": "Tổng giá trị: -835,7 tỷ đồng",
+        "items": [
+          {
+            "rank": 1,
+            "label": "FPT",
+            "value": -171.95,
+            "value_suffix": "tỷ",
+            "change_pct": null,
+            "appear_at_sec": 5.0
+          },
+          {
+            "rank": 2,
+            "label": "VHM",
+            "value": -154.35,
+            "value_suffix": "tỷ",
+            "change_pct": null,
+            "appear_at_sec": 10.0
+          },
+          {
+            "rank": 3,
+            "label": "MSB",
+            "value": -144.36,
+            "value_suffix": "tỷ",
+            "change_pct": null,
+            "appear_at_sec": 14.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "s05",
+      "narration_text": "Đó là tóm tắt phiên giao dịch ngày mười hai tháng năm! Hẹn gặp lại các bạn — với phân tích kỹ thuật cuối tuần. Đừng quên theo dõi VBSE để cập nhật sớm nhất nhé!",
+      "audio_path": null,
+      "duration": null,
+      "type": "outro",
+      "data": {
+        "cta": "Theo dõi VBSE",
+        "handle": "@vbse",
+        "next_topic": "Phân tích kỹ thuật cuối tuần",
+        "date_label": "Phiên 12/05/2026"
+      }
+    }
+  ]
+}

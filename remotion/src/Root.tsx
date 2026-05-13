@@ -20,7 +20,7 @@ const RemotionRoot: React.FC = () => (
     defaultProps={{ scriptPath: 'runs/2026-05-12_W19_banking/script.json' } as Props}
     fps={30}
     width={1080}
-    height={1920}
+    height={1080}
     durationInFrames={1}
     calculateMetadata={loadScriptMetadata}
   />

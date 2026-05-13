@@ -3,9 +3,9 @@
   "template": "bulletin",
   "topic": "Banking tuần W19 — biến động mạnh",
   "week": 19,
-  "voice": "hn_male_phuthang_stor80dt_48k-fhg",
-  "speed": 0.95,
+  "voice": "s_hochiminh_female_vyquangcao_advertise_vc",
+  "speed": 1.0,
   "scenes_count": 4,
-  "total_duration_sec": 32.078,
-  "created_at": "2026-05-12T11:18:28.128774+07:00"
+  "total_duration_sec": 43.296,
+  "created_at": "2026-05-12T15:06:30.302429+07:00"
 }
